@@ -1,6 +1,5 @@
-import React, { useRef, createContext } from "react";
+import React, { useRef, useMemo, createContext } from "react";
 import Toggle from "./Toggle";
-import Counter from "./Counter";
 import useTitleInput from "./hooks/useTitleInput";
 
 export const UserContext = createContext();
@@ -9,6 +8,16 @@ const App = () => {
   const [name, setName] = useTitleInput("");
   const ref = useRef();
 
+  const reverseWord = word => {
+    return word
+      .split("")
+      .reverse()
+      .join("");
+  };
+
+  const title = "Level Up Dishes";
+  const TitleReversed = useMemo(() => reverseWord(title), [title]);
+
   return (
     <UserContext.Provider value={{ user: true }}>
       <div
@@ -16,9 +25,8 @@ const App = () => {
         ref={ref}
         onClick={() => ref.current.classList.add("clicked")}
       >
-        <h1>Level Up Dishes</h1>
+        <h1>{TitleReversed}</h1>
         <Toggle />
-        <Counter />
         <form
           onSubmit={e => {
             e.preventDefault();
