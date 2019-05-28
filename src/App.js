@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useRef } from "react";
 import useAbortableFetch from "use-abortable-fetch";
 import { useSpring, animated } from "react-spring";
 import Toggle from "./Toggle";
@@ -7,7 +7,7 @@ import useTitleInput from "./hooks/useTitleInput";
 const App = () => {
   const [name, setName] = useTitleInput("");
   const ref = useRef();
-  const { data, loading } = useAbortableFetch(
+  const { data } = useAbortableFetch(
     "https://my-json-server.typicode.com/leveluptuts/fakeapi/dishes"
   );
 
